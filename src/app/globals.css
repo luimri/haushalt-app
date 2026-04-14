@@ -1,26 +1,86 @@
 @import "tailwindcss";
+@import "@fontsource/nunito/400.css";
+@import "@fontsource/nunito/600.css";
+@import "@fontsource/nunito/700.css";
+@import "@fontsource/nunito/800.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg: #EDE7DF;
+  --shadow-out: 6px 6px 14px #C8C2BA, -4px -4px 10px #F8F2EA;
+  --shadow-in: inset 3px 3px 8px #C8C2BA, inset -2px -2px 6px #F8F2EA;
+  --accent: #C4856E;
+  --text-dark: #3D3530;
+  --text-mid: #9B928A;
+  --text-muted: #B8A89E;
+  --green: #7DAF78;
+  --amber: #D4A056;
+  --red: #C4856E;
+  --bath: #D8E6EF;
+  --kue: #EFE4D2;
+  --wohn: #E4DCEF;
+  --schlaf: #D8EBDF;
+  --flur: #E8E4DC;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  font-family: 'Nunito', sans-serif;
+  color: #3D3530;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+span, p, h1, h2, h3, label, div {
+  color: inherit;
+}
+
+.task-sheet input,
+.task-sheet select,
+.task-sheet label {
+  color: #3D3530 !important;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(-50%); }
+  20%       { transform: translateX(calc(-50% - 5px)); }
+  50%       { transform: translateX(calc(-50% + 5px)); }
+  75%       { transform: translateX(calc(-50% - 3px)); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes compFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes compDotStamp {
+  0%   { transform: scale(1.4) rotate(-8deg); opacity: 0; }
+  35%  { transform: scale(0.88) rotate(2deg); opacity: 1; }
+  60%  { transform: scale(1.05) rotate(-1deg); }
+  80%  { transform: scale(0.97) rotate(0.5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes compTaskFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes compStrikethrough {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes taskCheck {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
 }
