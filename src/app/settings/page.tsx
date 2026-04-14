@@ -224,7 +224,7 @@ function RoomSheet({
   return (
     <>
       <div onClick={onClose} style={OVERLAY} />
-      <div style={SHEET}>
+      <div onClick={e => e.stopPropagation()} style={SHEET}>
         <Handle />
         <div style={{ padding: '8px 20px 32px' }}>
           <p style={{

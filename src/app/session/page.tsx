@@ -163,6 +163,7 @@ function SessionContent() {
 
   // ── Completion overlay state ──
   const [showComplete,      setShowComplete]      = useState(false);
+  const [completeDone,      setCompleteDone]      = useState(false);
   const [completionRatio,   setCompletionRatio]   = useState(0);
   const [completionElapsed, setCompletionElapsed] = useState(0);
   const [completionCount,   setCompletionCount]   = useState(0);
@@ -246,6 +247,15 @@ function SessionContent() {
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [showComplete, completionRatio]);
 
+  useEffect(() => {
+    if (showComplete) {
+      const t = setTimeout(() => setCompleteDone(true), 2500);
+      return () => clearTimeout(t);
+    } else {
+      setCompleteDone(false);
+    }
+  }, [showComplete]);
+
   // ── Timer (wall-clock — survives tab hidden / sleep) ──
   useEffect(() => {
     if (!active) return;
@@ -326,6 +336,7 @@ function SessionContent() {
       setCompletedIds(prev => { const n = new Set(prev); n.delete(taskId); return n; });
       completedTasksForOverlay.current = completedTasksForOverlay.current.filter(t => t.id !== taskId);
       await uncompleteTask(taskId);
+      localStorage.setItem('tasks_updated', Date.now().toString());
     } else {
       setCompletedIds(prev => new Set([...prev, taskId]));
       const task = sessionTasks.find(t => t.id === taskId);
@@ -333,6 +344,7 @@ function SessionContent() {
         completedTasksForOverlay.current = [...completedTasksForOverlay.current, task];
       }
       await completeTask(taskId);
+      localStorage.setItem('tasks_updated', Date.now().toString());
     }
   }
 
@@ -725,13 +737,15 @@ function SessionContent() {
 
               {/* 6 — Fertig button */}
               <div
-                onClick={() => { setShowComplete(false); router.push('/'); }}
+                onClick={() => { if (!completeDone) return; setShowComplete(false); router.push('/'); }}
                 style={{
                   position: 'relative', zIndex: 10,
                   width: '100%', background: '#EDE7DF',
                   borderRadius: 20, padding: '16px 0',
                   textAlign: 'center', cursor: 'pointer',
                   boxShadow: '6px 6px 14px #C8C2BA, -4px -4px 10px #F8F2EA',
+                  opacity: completeDone ? 1 : 0.4,
+                  transition: 'opacity 0.3s ease',
                 }}
               >
                 <span style={{ fontSize: 16, fontWeight: 700, color: '#9B7E6E' }}>Fertig</span>

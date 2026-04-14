@@ -121,7 +121,8 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
     });
   }
 
-  function handleSave() {
+  function handleSave(e: React.MouseEvent) {
+    e.stopPropagation();
     if (!canSave) return;
     const savedFrequency = isCustomFreq
       ? (customDays.size > 0 ? Array.from(customDays).join(',') : 'wöchentlich')
@@ -192,7 +193,7 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
         onClick={onClose}
         style={{ position: 'fixed', inset: 0, background: 'rgba(61,53,48,0.4)', zIndex: 200 }}
       />
-      <div style={{
+      <div onClick={e => e.stopPropagation()} style={{
         position: 'fixed', bottom: 0, left: 0, right: 0,
         maxWidth: 430, margin: '0 auto',
         background: '#EDE7DF',
