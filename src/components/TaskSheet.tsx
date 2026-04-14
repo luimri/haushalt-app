@@ -121,8 +121,7 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
     });
   }
 
-  function handleSave(e: React.MouseEvent) {
-    e.stopPropagation();
+  function handleSave() {
     if (!canSave) return;
     const savedFrequency = isCustomFreq
       ? (customDays.size > 0 ? Array.from(customDays).join(',') : 'wöchentlich')

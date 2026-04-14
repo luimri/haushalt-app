@@ -266,7 +266,7 @@ export async function getActivityByDay(): Promise<boolean[]> {
     counts[idx] = (counts[idx] ?? 0) + 1;
   }
   for (const [idx, count] of Object.entries(counts)) {
-    if (count >= 3) activity[Number(idx)] = true;
+    if (count >= 1) activity[Number(idx)] = true;
   }
 
   return activity;

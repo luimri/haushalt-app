@@ -325,7 +325,8 @@ function RoomSheet({
           </div>
 
           <button
-            onClick={save}
+            type="button"
+            onClick={e => { e.stopPropagation(); save(); }}
             disabled={saving || !name.trim()}
             style={{
               ...BTN_PRIMARY,
@@ -338,7 +339,8 @@ function RoomSheet({
 
           {room && (
             <button
-              onClick={deleteRoom}
+              type="button"
+              onClick={e => { e.stopPropagation(); deleteRoom(); }}
               style={{
                 ...BTN_PRIMARY,
                 marginTop: 12,
