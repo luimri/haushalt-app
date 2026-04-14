@@ -241,9 +241,11 @@ function TasksPageInner() {
     if (!done) {
       setLocalState(prev => { const n = new Map(prev); n.set(task.id, true); return n; });
       await completeTask(task.id);
+      localStorage.setItem('tasks_updated', Date.now().toString());
     } else {
       setLocalState(prev => { const n = new Map(prev); n.set(task.id, false); return n; });
       await uncompleteTask(task.id);
+      localStorage.setItem('tasks_updated', Date.now().toString());
 
       if (wasLocallyCompleted) {
         setLocalState(prev => { const n = new Map(prev); n.delete(task.id); return n; });
@@ -266,9 +268,11 @@ function TasksPageInner() {
     if (!done) {
       setLocalState(prev => { const n = new Map(prev); n.set(task.id, true); return n; });
       await completeTask(task.id);
+      localStorage.setItem('tasks_updated', Date.now().toString());
     } else {
       setLocalState(prev => { const n = new Map(prev); n.set(task.id, false); return n; });
       await uncompleteTask(task.id);
+      localStorage.setItem('tasks_updated', Date.now().toString());
     }
   }
 

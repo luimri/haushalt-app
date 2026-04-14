@@ -67,7 +67,16 @@ export default function HeutePage() {
   useEffect(() => {
     fetchData();
     window.addEventListener('focus', fetchData);
-    return () => window.removeEventListener('focus', fetchData);
+
+    function onStorage(e: StorageEvent) {
+      if (e.key === 'tasks_updated') fetchData();
+    }
+    window.addEventListener('storage', onStorage);
+
+    return () => {
+      window.removeEventListener('focus', fetchData);
+      window.removeEventListener('storage', onStorage);
+    };
   }, [fetchData]);
 
   const swap = (smallIdx: number) => {

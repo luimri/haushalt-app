@@ -727,6 +727,7 @@ function SessionContent() {
               <div
                 onClick={() => { setShowComplete(false); router.push('/'); }}
                 style={{
+                  position: 'relative', zIndex: 10,
                   width: '100%', background: '#EDE7DF',
                   borderRadius: 20, padding: '16px 0',
                   textAlign: 'center', cursor: 'pointer',

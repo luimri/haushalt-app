@@ -3,7 +3,19 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Haushalt",
-  description: "Dein persönlicher Haushalts-Tracker",
+  description: "Dein persönlicher Haushalts-Assistent",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Haushalt",
+  },
+  icons: {
+    apple: "/icon.png",
+  },
+  other: {
+    "theme-color": "#C4856E",
+  },
 };
 
 export default function RootLayout({
