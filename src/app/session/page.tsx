@@ -377,7 +377,7 @@ function SessionContent() {
 
   // ── Derived ──
   const selectedList = allTasks.filter(t => selectedIds.has(t.id));
-  const totalMins    = selectedList.reduce((s, t) => s + t.effort_minutes, 0);
+  const totalMins    = selectedList.reduce((s, t) => s + t.effort, 0);
 
   const tasksByRoom: Record<string, TaskWithStatus[]> = {};
   for (const t of allTasks) {
@@ -531,7 +531,7 @@ function SessionContent() {
                         </span>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <RoomPill room={task.room} rooms={rooms} />
-                          <span style={{ fontSize: 11, color: '#B8A89E' }}>{task.effort_minutes} Min</span>
+                          <span style={{ fontSize: 11, color: '#B8A89E' }}>{task.effort} Min</span>
                         </div>
                       </div>
                     </div>
@@ -817,7 +817,7 @@ function SessionContent() {
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                             <RoomPill room={task.room} rooms={rooms} />
-                            <span style={{ fontSize: 11, color: '#B8A89E' }}>{task.effort_minutes} Min</span>
+                            <span style={{ fontSize: 11, color: '#B8A89E' }}>{task.effort} Min</span>
                           </div>
                         </div>
                         <Checkbox checked={sel} onToggle={() => toggleTask(task.id)} size={28} accent />
@@ -891,7 +891,7 @@ function SessionContent() {
                                   <span style={{ color: task.priority === 'hoch' ? '#C0392B' : task.priority === 'mittel' ? '#D4A056' : '#7DAF78' }}>
                                     {task.priority === 'hoch' ? 'Hoch' : task.priority === 'mittel' ? 'Mittel' : 'Niedrig'}
                                   </span>
-                                  {' · '}{task.effort_minutes} Min
+                                  {' · '}{task.effort} Min
                                 </span>
                                 <Checkbox checked={sel} onToggle={() => toggleTask(task.id)} size={24} accent />
                               </div>

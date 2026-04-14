@@ -7,7 +7,7 @@ export type Task = {
   name: string;
   room: string;
   frequency: string;
-  effort_minutes: number;
+  effort: number;
   priority: string;
   is_one_time: boolean;
   is_active: boolean;
@@ -122,13 +122,13 @@ export async function getSuggestedTasks(durationMinutes: number): Promise<TaskWi
 
   for (const task of sorted) {
     if (selected.length >= 4) break;
-    if (totalMinutes + task.effort_minutes > durationMinutes) continue;
+    if (totalMinutes + task.effort > durationMinutes) continue;
 
     const roomPenalty = usedRooms.has(task.room) ? 1 : 0;
     if (roomPenalty && selected.length >= 2) continue;
 
     selected.push(task);
-    totalMinutes += task.effort_minutes;
+    totalMinutes += task.effort;
     usedRooms.add(task.room);
   }
 
@@ -136,9 +136,9 @@ export async function getSuggestedTasks(durationMinutes: number): Promise<TaskWi
     for (const task of sorted) {
       if (selected.find(t => t.id === task.id)) continue;
       if (selected.length >= 4) break;
-      if (totalMinutes + task.effort_minutes > durationMinutes) continue;
+      if (totalMinutes + task.effort > durationMinutes) continue;
       selected.push(task);
-      totalMinutes += task.effort_minutes;
+      totalMinutes += task.effort;
     }
   }
 

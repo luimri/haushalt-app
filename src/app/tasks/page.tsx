@@ -289,7 +289,7 @@ function TasksPageInner() {
         name:             data.name             ?? '',
         room:             data.room             ?? 'bad',
         priority:         data.priority         ?? 'mittel',
-        effort_minutes:   data.effort_minutes   ?? 10,
+        effort:           data.effort           ?? 10,
         frequency:        data.frequency        ?? 'wöchentlich',
         is_one_time:      data.is_one_time      ?? false,
         is_active:        true,
@@ -557,7 +557,7 @@ function TasksPageInner() {
                                     fontSize: 11, color: '#B8A89E',
                                     flexShrink: 0, whiteSpace: 'nowrap',
                                   }}>
-                                    {task.effort_minutes} Min
+                                    {task.effort} Min
                                   </span>
 
                                   {/* Checkbox */}
@@ -751,7 +751,7 @@ function TasksPageInner() {
                                 {roomNameMap[rk(task.room)] ?? task.room}
                               </span>
                               <span style={{ fontSize: 11, color: '#B8A89E' }}>
-                                {task.effort_minutes} Min
+                                {task.effort} Min
                               </span>
                             </div>
                           </div>

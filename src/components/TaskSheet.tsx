@@ -97,7 +97,7 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
   const [name,           setName]           = useState(initialData?.name ?? '');
   const [room,           setRoom]           = useState(initialData?.room ?? defaultRoom ?? 'bad');
   const [priority,       setPriority]       = useState(initialData?.priority ?? 'mittel');
-  const [effortMinutes,  setEffortMinutes]  = useState(initialData?.effort_minutes ?? 10);
+  const [effortMinutes,  setEffortMinutes]  = useState(initialData?.effort ?? 10);
   const [frequency,      setFrequency]      = useState(initIsCustom ? 'benutzerdefiniert' : initFreq);
   const [customDays,     setCustomDays]     = useState<Set<string>>(() => parseCustomDays(initFreq));
   const [isOneTime,      setIsOneTime]      = useState(initialData?.is_one_time ?? false);
@@ -130,7 +130,7 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
       name:            name.trim(),
       room,
       priority,
-      effort_minutes:  effortMinutes,
+      effort:          effortMinutes,
       frequency:       savedFrequency,
       is_one_time:     isOneTime,
       is_active:       true,
