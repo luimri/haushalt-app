@@ -145,7 +145,6 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
     margin: '0 0 8px', display: 'block',
   };
 
-  // The key fix: WebkitTextFillColor overrides browser native input color on Chrome/Safari
   const inputColor = '#7A6E68';
   const insetStyle: React.CSSProperties = {
     background: '#E4DED6',
@@ -192,6 +191,7 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
         onClick={onClose}
         style={{ position: 'fixed', inset: 0, background: 'rgba(61,53,48,0.4)', zIndex: 200 }}
       />
+
       <div onClick={e => e.stopPropagation()} style={{
         position: 'fixed', bottom: 0, left: 0, right: 0,
         maxWidth: 430, margin: '0 auto',
@@ -350,7 +350,9 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
           )}
 
           {/* Save */}
-          <div
+          <button
+            type="button"
+            disabled={!canSave}
             onClick={handleSave}
             style={{
               background: canSave ? '#C4856E' : '#D4C8C0',
@@ -359,12 +361,17 @@ export default function TaskSheet({ mode, initialData, defaultRoom, rooms = ROOM
               cursor: canSave ? 'pointer' : 'not-allowed',
               boxShadow: canSave ? '0 4px 18px rgba(196,133,110,0.40)' : 'none',
               transition: 'all 0.2s ease',
+              border: 'none',
+              width: '100%',
+              fontFamily: 'Nunito, sans-serif',
+              color: '#FFFFFF',
+              WebkitTextFillColor: '#FFFFFF',
+              fontWeight: 400,
+              fontSize: 15,
             }}
           >
-            <span style={{ color: '#FFFFFF', WebkitTextFillColor: '#FFFFFF', fontWeight: 400, fontSize: 15, fontFamily: 'Nunito, sans-serif' }}>
-              Speichern
-            </span>
-          </div>
+            Speichern
+          </button>
         </div>
       </div>
     </>

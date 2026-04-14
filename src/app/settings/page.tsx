@@ -196,6 +196,7 @@ function RoomSheet({
   const isCustomColor = !ROOM_COLORS.includes(color)
 
   async function save() {
+    console.log('[RoomSheet] save() called, name:', name, 'room:', room)
     if (!name.trim()) return
     setSaving(true)
     try {
@@ -213,6 +214,7 @@ function RoomSheet({
   }
 
   async function deleteRoom() {
+    console.log('[RoomSheet] deleteRoom() called, room:', room)
     if (!room) return
     const confirmed = window.confirm('Raum wirklich löschen? Aufgaben in diesem Raum bleiben erhalten.')
     if (!confirmed) return
